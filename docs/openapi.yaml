@@ -1,0 +1,484 @@
+openapi: 3.0.0
+info:
+  title: KlikPos API
+  description: API for KlikPos Point of Sale
+  version: 1.0.0
+servers:
+  - url: https://demo.klikpos.id
+paths:
+  /api/check:
+    get:
+      summary: Check tenant status
+      responses:
+        '200':
+          description: Tenant information
+  /api/auth/login:
+    post:
+      summary: Login
+      responses:
+        '200':
+          description: Success
+  /api/auth/forgot-password:
+    post:
+      summary: Forgot password
+      responses:
+        '200':
+          description: Success
+  /api/auth/verify-email/{id}/{hash}:
+    get:
+      summary: Verify email
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: hash
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /api/auth/email/verification-notification:
+    post:
+      summary: Resend verification notification
+      responses:
+        '200':
+          description: Success
+  /api/auth/logout:
+    post:
+      summary: Logout
+      responses:
+        '200':
+          description: Success
+  /api/auth/me:
+    get:
+      summary: Get current user
+      responses:
+        '200':
+          description: User data
+    put:
+      summary: Update current user
+      responses:
+        '200':
+          description: Success
+  /api/register-fcm-token:
+    post:
+      summary: Register FCM token
+      responses:
+        '200':
+          description: Success
+  /api/temp/upload:
+    post:
+      summary: Upload temporary file
+      responses:
+        '200':
+          description: Success
+  /api/master/supplier:
+    get:
+      summary: Get suppliers
+      responses:
+        '200':
+          description: A list of suppliers
+    post:
+      summary: Create supplier
+      responses:
+        '200':
+          description: Success
+  /api/master/supplier/{supplier}:
+    get:
+      summary: Get supplier
+      parameters:
+        - name: supplier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Supplier data
+    put:
+      summary: Update supplier
+      parameters:
+        - name: supplier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+    delete:
+      summary: Delete supplier
+      parameters:
+        - name: supplier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /api/master/category:
+    get:
+      summary: Get categories
+      responses:
+        '200':
+          description: A list of categories
+    post:
+      summary: Create category
+      responses:
+        '200':
+          description: Success
+  /api/master/category/{category}:
+    get:
+      summary: Get category
+      parameters:
+        - name: category
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Category data
+    put:
+      summary: Update category
+      parameters:
+        - name: category
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+    delete:
+      summary: Delete category
+      parameters:
+        - name: category
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /api/master/product:
+    get:
+      summary: Get products
+      responses:
+        '200':
+          description: A list of products
+    post:
+      summary: Create product
+      responses:
+        '200':
+          description: Success
+  /api/master/product/{product}:
+    get:
+      summary: Get product
+      parameters:
+        - name: product
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product data
+    put:
+      summary: Update product
+      parameters:
+        - name: product
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+    delete:
+      summary: Delete product
+      parameters:
+        - name: product
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /api/master/product/{product}/stock:
+    get:
+      summary: Get product stock
+      parameters:
+        - name: product
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product stock data
+    post:
+      summary: Create product stock
+      parameters:
+        - name: product
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /api/master/product/{product}/stock/{stock}:
+    delete:
+      summary: Delete product stock
+      parameters:
+        - name: product
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: stock
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /api/master/member:
+    get:
+      summary: Get members
+      responses:
+        '200':
+          description: A list of members
+    post:
+      summary: Create member
+      responses:
+        '200':
+          description: Success
+  /api/master/member/{member}:
+    get:
+      summary: Get member
+      parameters:
+        - name: member
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Member data
+    put:
+      summary: Update member
+      parameters:
+        - name: member
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+    delete:
+      summary: Delete member
+      parameters:
+        - name: member
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /api/master/payment-method:
+    get:
+      summary: Get payment methods
+      responses:
+        '200':
+          description: A list of payment methods
+  /api/about:
+    get:
+      summary: Get about information
+      responses:
+        '200':
+          description: About information
+    put:
+      summary: Update about information
+      responses:
+        '200':
+          description: Success
+  /api/transaction/dashboard/total-revenue:
+    get:
+      summary: Get total revenue
+      responses:
+        '200':
+          description: Total revenue data
+  /api/transaction/dashboard/total-gross-profit:
+    get:
+      summary: Get total gross profit
+      responses:
+        '200':
+          description: Total gross profit data
+  /api/transaction/dashboard/total-sales:
+    get:
+      summary: Get total sales
+      responses:
+        '200':
+          description: Total sales data
+  /api/transaction/selling:
+    get:
+      summary: Get sellings
+      responses:
+        '200':
+          description: A list of sellings
+    post:
+      summary: Create selling
+      responses:
+        '200':
+          description: Success
+  /api/transaction/selling/{selling}:
+    get:
+      summary: Get selling
+      parameters:
+        - name: selling
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Selling data
+  /api/transaction/cash-drawer:
+    get:
+      summary: Get cash drawer
+      responses:
+        '200':
+          description: Cash drawer data
+    post:
+      summary: Open cash drawer
+      responses:
+        '200':
+          description: Success
+  /api/transaction/cash-drawer/close:
+    post:
+      summary: Close cash drawer
+      responses:
+        '200':
+          description: Success
+  /api/setting/{key}:
+    get:
+      summary: Get setting
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Setting data
+  /api/setting:
+    post:
+      summary: Create setting
+      responses:
+        '200':
+          description: Success
+  /api/setting/secure-initial-price:
+    post:
+      summary: Secure initial price
+      responses:
+        '200':
+          description: Success
+  /api/setting/secure-initial-price/verify:
+    post:
+      summary: Verify secure initial price
+      responses:
+        '200':
+          description: Success
+  /api/report/cashier:
+    post:
+      summary: Generate cashier report
+      responses:
+        '200':
+          description: Success
+  /api/printer:
+    get:
+      summary: Get printers
+      responses:
+        '200':
+          description: A list of printers
+    post:
+      summary: Create printer
+      responses:
+        '200':
+          description: Success
+  /api/printer/{printer}:
+    put:
+      summary: Update printer
+      parameters:
+        - name: printer
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+    delete:
+      summary: Delete printer
+      parameters:
+        - name: printer
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /api/notification:
+    get:
+      summary: Get notifications
+      responses:
+        '200':
+          description: A list of notifications
+  /api/notification/{notification}/{product}:
+    put:
+      summary: Update notification
+      parameters:
+        - name: notification
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: product
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /api/notification/clear:
+    delete:
+      summary: Clear notifications
+      responses:
+        '200':
+          description: Success
+  /api/user:
+    get:
+      summary: Get current user
+      responses:
+        '200':
+          description: User data
+  /api/:
+    get:
+      summary: Get API version
+      responses:
+        '200':
+          description: Laravel version
