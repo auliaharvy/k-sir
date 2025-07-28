@@ -36,6 +36,7 @@ use App\Filament\Tenant\Resources\SellingResource;
 use App\Filament\Tenant\Resources\StockOpnameResource;
 use App\Filament\Tenant\Resources\SupplierResource;
 use App\Filament\Tenant\Resources\TableResource;
+use App\Filament\Tenant\Resources\SopResource;
 use App\Filament\Tenant\Resources\UserResource;
 use App\Filament\Tenant\Resources\VoucherResource;
 use App\Http\Middleware\LocalizationMiddleware;
@@ -204,6 +205,7 @@ class TenantPanelProvider extends PanelProvider
             ]),
             NavigationGroup::make(__('General'))->label('')->collapsible(false)->items([
                 $this->generateNavigationItem(VoucherResource::class, Voucher::class),
+                $this->generateNavigationItem(SopResource::class),
             ]),
             NavigationGroup::make(__('Setting'))->collapsible(false)->items([
                 $this->generateNavigationItem(GeneralSetting::class),
