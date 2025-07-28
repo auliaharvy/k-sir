@@ -273,16 +273,20 @@ class TenantPanelProvider extends PanelProvider
             ->brandLogo($about->photo ?? null);
     }
 
-    private function generateNavigationItem(string $resource, ?string $feature = null, ?array $activeWhen = []): NavigationItem
+    private function generateNavigationItem(string $resource, ?string $feature = null, ?array $activeWhen = []): ?NavigationItem
     {
         $canAccess = $feature ? feature($feature) && $resource::canAccess() : $resource::canAccess();
 
+        if (!$canAccess) {
+            return null;
+        }
+
         $active = false;
-        if ((new $resource) instanceof Page) {
+        if (is-subclass-of($resource, Page::class)) {
             $active = Str::of($resource::getRouteName())->exactly(Route::current()->getName());
         }
 
-        if ((new $resource) instanceof Resource) {
+        if (is-subclass-of($resource, Resource::class)) {
             $active = Str::of(Route::currentRouteName())->contains($resource::getRouteBaseName());
         }
 
@@ -295,7 +299,9 @@ class TenantPanelProvider extends PanelProvider
             $active = in_array(Route::current()->getName(), $activatedRoute);
         }
 
-        return NavigationItem::make($resource::getLabel())
+        $label = is-subclass-of($resource, Resource::class) ? $resource::getNavigationLabel() : $resource::getTitle();
+
+        return NavigationItem::make($label)
             ->visible($canAccess)
             ->icon($resource::getNavigationIcon())
             ->isActiveWhen(fn (): bool => $active)
