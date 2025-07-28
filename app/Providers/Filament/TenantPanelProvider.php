@@ -282,11 +282,11 @@ class TenantPanelProvider extends PanelProvider
         }
 
         $active = false;
-        if (is-subclass-of($resource, Page::class)) {
+        if (is_subclass_of($resource, Page::class)) {
             $active = Str::of($resource::getRouteName())->exactly(Route::current()->getName());
         }
 
-        if (is-subclass-of($resource, Resource::class)) {
+        if (is_subclass_of($resource, Resource::class)) {
             $active = Str::of(Route::currentRouteName())->contains($resource::getRouteBaseName());
         }
 
@@ -299,7 +299,7 @@ class TenantPanelProvider extends PanelProvider
             $active = in_array(Route::current()->getName(), $activatedRoute);
         }
 
-        $label = is-subclass-of($resource, Resource::class) ? $resource::getNavigationLabel() : $resource::getTitle();
+        $label = is_subclass_of($resource, Resource::class) ? $resource::getNavigationLabel() : $resource::getTitle();
 
         return NavigationItem::make($label)
             ->visible($canAccess)
