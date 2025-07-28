@@ -299,7 +299,7 @@ class TenantPanelProvider extends PanelProvider
             $active = in_array(Route::current()->getName(), $activatedRoute);
         }
 
-        $label = is_subclass_of($resource, Resource::class) ? $resource::getNavigationLabel() : $resource::getTitle();
+        $label = is_subclass_of($resource, Resource::class) ? $resource::getNavigationLabel() : (new $resource())->getTitle();
 
         return NavigationItem::make($label)
             ->visible($canAccess)
